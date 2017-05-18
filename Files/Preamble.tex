@@ -1,0 +1,187 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{graphicx}
+
+\graphicspath{{Images/}}
+
+\usepackage{pgf}
+
+\usepackage							% Microtypography tuning.
+[
+	protrusion = true,
+	expansion = false,
+	tracking = true,
+	kerning = true,
+	spacing = false,
+	babel = true
+]
+{microtype}							% http://ctan.mirrorcatalogs.com/macros/latex/contrib/microtype/microtype.pdf
+
+\SetTracking[unit = space]{font = */*/*/sc/*}{25}   % Adjust kerning for small caps.
+
+\SetExtraKerning[unit = space]		% Adjusted kerning for certain characters.
+{
+	font = */*/*/*/*
+}
+{
+	: = {100, },
+	; = {100, },
+	? = {150, 150},
+	! = {150, 150},
+	: = {250, },
+	; = {150, },
+	? = {250, 250},
+	! = {250, 250},
+	» = { , -200},
+	« = {-200, },
+	› = { , -200},
+	‹ = {-200, },
+	– = {200, 250},
+	— = {200, 250},
+	@ = {200, 200}
+}
+
+\usepackage{booktabs}
+\usepackage{breakurl}
+\usepackage{emptypage}
+
+\usepackage[bottom]{footmisc}
+\usepackage{remreset}
+
+\makeatletter
+    \@removefromreset{footnote}{chapter}
+\makeatother
+
+\renewcommand*{\footnoterule}{\rule{0 pt}{0 pt}}
+\deffootnote[1.2 em]{1.2 em}{0 em}{\makebox[1.4 em][l]{\textbf{\thefootnotemark}}}
+
+\usepackage{xparse}
+
+\DeclareDocumentCommand{\myfootnote}{o o o m}
+{%
+    \IfNoValueTF{#1}%
+    {%
+        \footnote{#4}%
+    }%
+    {%
+        \IfNoValueTF{#2}%
+        {%
+            \kern #1 em\footnote{#4}%
+        }%
+        {%
+            \IfNoValueTF{#3}%
+            {%
+                \kern #1 em\footnote{#4}\kern #2 em%
+            }%
+            {%
+                \kern #1 em\footnote[#3]{#4}\kern #2 em%
+            }%
+        }%
+    }%
+}
+
+\usepackage{titlesec}
+
+\titleformat{\chapter}
+    {\normalfont\rmfamily\huge\bfseries}
+    {\thechapter}{1 em}{}
+
+\titleformat{\section}
+    {\normalfont\rmfamily\Large\bfseries}
+    {\thesection}{1 em}{}
+
+\titleformat{\subsection}
+    {\normalfont\rmfamily\large\bfseries}
+    {\thesubsection}{1 em}{}
+
+\titleformat{\subsubsection}
+    {\normalfont\rmfamily\normalsize\bfseries}
+    {\subsubsectionname}{1 em}{}
+
+
+\pagestyle{headings}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%\usepackage{upgreek}               % Use if you want to use upright lowercase and italic upercase greek letters.
+%\usepackage{dsfont}                % Use if you want to use special symbols.
+
+%\usepackage[printonlyused]{acronym} % Use if you want to have acronyms. http://mirror.hmc.edu/ctan/macros/latex/contrib/acronym/acronym.pdf
+
+%\usepackage{pifont}				% Special symbols.
+%\usepackage{fourier-orns}			% More special symbols.
+\usepackage{lettrine}
+
+\usepackage{enumitem}
+\usepackage
+[
+	format = plain,
+	textfont = {sf, footnotesize},
+	labelfont = {sf, bf}
+]
+{caption}[2008/08/24]
+\usepackage{subcaption}				% For using sub-figures.
+
+\usepackage
+[
+    algo2e,
+    ruled,
+    vlined,
+    linesnumbered,
+    algochapter
+]
+{algorithm2e}
+
+\SetAlCapFnt{\sffamily\footnotesize}
+\SetAlCapNameFnt{\sffamily\footnotesize}
+
+\usepackage[numbers]{natbib}
+
+\makeatletter
+    \def\NAT@spacechar{~}% NEW
+\makeatother
+
+\definecolor{darkblue}{rgb}{0, 0, 0.5}
+
+\usepackage
+[
+	bookmarks = true,
+	bookmarksopen = false,
+	bookmarksnumbered = true,
+	pdfstartpage = 1,
+	pdftitle = {{\printTitle}},
+	pdfauthor = {{\printAuthor}},
+	pdfsubject = {{\printSubject}},
+	backref = page,
+	breaklinks = true,
+	colorlinks = true,
+	linkcolor = darkblue,
+	anchorcolor = darkblue,
+	citecolor = darkblue,
+	filecolor = darkblue,
+	menucolor = darkblue,
+	pagecolor = darkblue,
+	urlcolor = darkblue
+]
+
+\usepackage{hyperref}
+
+
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]
+{
+    \ifcase #1
+        Not cited.
+    \or
+        \footnotesize (Cited on page #2.)
+    \else
+        \footnotesize (Cited on pages #2.)
+    \fi
+}
+
+\usepackage{cleveref}
+
+\begin{document}

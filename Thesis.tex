@@ -1,0 +1,69 @@
+\documentclass
+[
+	paper = a4,
+    pagesize,
+	12 pt,
+	oneside,                       % Chose ›oneside‹ for digital version, ›twoside‹ for printed version.
+    open = right,
+	DIV = calc,
+	BCOR = 0 mm,                   % Binding correction. Only necessary for printed version. Depends on actual binding.
+	bibtotoc
+]
+{scrbook}
+
+\input{Files/Commands.tex}
+
+\myTitle{High-Level visualization of graph algorrithms}                  % Change!
+\myName{Julius Milian Severin}                    % Change!
+\myDateOfBirth{March~12, 1995}     % Change!
+\myPlaceOfBirth{Berlin, Germany}              % Change!
+\mySubject{{Graph Algorithms}{Visualization}}    % Change!
+
+\input{Files/Preamble.tex}
+
+
+
+\begin{document}
+
+
+\frontmatter
+% Title Page
+\input{Files/Title_Page.tex}
+
+% Abstract
+\input{Files/Abstract.tex}
+
+% Table of Contents
+\input{Files/Table_of_Contents.tex}
+
+
+\mainmatter
+\chapter{Chapter}
+
+\lettrine[findent = -0.3 em, nindent = 0.7 em]{A}{} small example as proposed by~\citet{test}.\myfootnote[-0.2]{The footnote number shouldn’t be in superscript down here.} Just some text referring to~\Cref{fig:HPI} and citing~\citet{test2}.\myfootnote[-0.2]{And another footnote.}
+
+\begin{figure}
+    \centering
+    \includegraphics[width = 9 cm]{HPI_Logo.pdf}
+    \caption[HPI logo]{\label{fig:HPI}That’s the logo of the HPI. Naturally, it comes without its obligatory safe zone.}
+\end{figure}
+
+\section{Section}
+
+\subsection{Subsection}
+
+\subsubsection{Subsubsection}
+
+\newpage
+More text.
+\newpage
+Even more text.
+
+% References
+\input{Files/Bibliography.tex}
+
+\chapter*{Independence Declaration}
+\input{Files/Independence_Declaration.tex}
+
+
+\end{document}

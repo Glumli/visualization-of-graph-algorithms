@@ -1,0 +1,11 @@
+\renewcommand*{\listfigurename}{\normalfont\rmfamily\Large\bfseries List of Figures}
+\renewcommand*{\listtablename}{\normalfont\rmfamily\Large\bfseries List of Tables}
+\pdfbookmark{\contentsname}{toc}
+\microtypesetup{protrusion = false}
+    \tableofcontents
+    \begingroup
+    \let\clearpage\relax
+    \listoffigures                  % Comment out if necessary.
+    \listoftables                   % Comment out if necessary.
+    \endgroup
+\microtypesetup{protrusion = true}
