@@ -13,11 +13,11 @@
 
 \input{Files/Commands.tex}
 
-\myTitle{High-Level visualization of graph algorrithms}                  % Change!
-\myName{Julius Milian Severin}                    % Change!
-\myDateOfBirth{March~12, 1995}     % Change!
-\myPlaceOfBirth{Berlin, Germany}              % Change!
-\mySubject{{Graph Algorithms}{Visualization}}    % Change!
+\myTitle{High-Level visualization of graph algorrithms}  % Change!
+\myName{Julius Milian Severin}  % Change!
+\myDateOfBirth{March~12, 1995}  % Change!
+\myPlaceOfBirth{Berlin, Germany}  % Change!
+\mySubject{{Graph Algorithms}{Visualization}}  % Change!
 
 \input{Files/Preamble.tex}
 
@@ -38,6 +38,74 @@
 
 
 \mainmatter
+\chapter{Introduction}
+
+
+Graphs are common structure in comuter science.
+Therefore developing more efficient graph algorithms plays a big role in algorithm engineering.
+\newline
+For the last two semesters the bachelor project of the algorithms chair, that I was a part of, has been working on a shortest path algortihm for navgiation in road graph.
+The project was about developing an algorithm that handles the Navigation Data Standart (NDS) in an efficient way. In NDS the graph is splittet in tiles according to a geographical grid. Those tiles are encrypted and compressed. Therefore the major cost factor during the algorithm is the amount of tiles that has to be loaded in the cache.
+\newline
+When developing an algorithm getting an idea of how the different approaches behave on real graph data is extremly important.
+On the one hand developing an algorithm is an iterative process. Hence it is important to communicate about the different approaches and therefore create an understanding of them in the whole team.
+On the other hand the developed algorithms can become quite complex the idea of how the algorithms should behave and the way they actually behave on real graph data can diverge quite alot.
+\\
+For this we started writing some information about the nodes and tile processed by the algorithms to a text file.
+Looking at those was an unefficient and annoying task. Therefore we started developing a visualization.\\
+In the following I will describe the process of developing a sencemaking visualization using the examble of our project.
+
+
+\chapter{Gedanken}
+NDS motivieren?
+Inwieweit das Projekt erklären?
+Einzelne Features:
+Wie genau auf Algorithmen eingehen?
+Nur verlinken?
+Erst Wünsche an Visualisierung?
+
+Historisch rangehen?\\
+
+Introduction\\
+Graphs important -> developing graph algorithms important -> Bad results/hard to imagine how the algorithm works in reality -> Visualizeing helps to access information -> Visualizing the algorithm -> bachelorproject -> problem -> building a visualization based on problem\\
+Main part\\
+historische rangehensweise? --> Motivation --> resultat --> relektieren --> repeat\\
+Fazit\\
+Resultat verallgemeinern --> Maß zwischen planen und baunen finden --> schnell beginnen --> feedback von nutzern\\
+
+\chapter{Main}
+
+\section{Displaying Edges}
+- good only shows the searchfront\\
+- slow\\
+- no value on big scale\\
+\subsection{Showing the watched edges} \label{edges only}
+
+The first visualization that comes in mind is to only display the edges that has been watched already. This leads to an impressing image of the search front and how it develops during the algorithm but multiple questions stay unanswered.\\
+When the algorithm watches already explored edges the user doesn't see any movement on the screen.\\
+In most cases there is no sence in having every single edge displayed.
+Only the outer tiles are easily recognizeable.
+
+\subsection{Showing the watched edges and the displayed blocks}
+As mentionioned in \ref{edges only} the tile structure of the map is totaly ignored in the visualization. As the tiles play a major role in the project they should also play a major role in the visualization.
+So the next step was to also draw the tiles when they have been loaded.
+
+\section{Displaying Blocks}
+- faster\\
+
+\subsection{Time based coloring}
+
+\subsection{Cache based coloring}
+
+\section{Displaying Graph in background}
+
+\section{Diff between Searchfronts}
+
+\section{basic features}
+- zoom\\
+- stepping threw time\\
+
+
 \chapter{Chapter}
 
 \lettrine[findent = -0.3 em, nindent = 0.7 em]{A}{} small example as proposed by~\citet{test}.\myfootnote[-0.2]{The footnote number shouldn’t be in superscript down here.} Just some text referring to~\Cref{fig:HPI} and citing~\citet{test2}.\myfootnote[-0.2]{And another footnote.}
