@@ -78,7 +78,7 @@ As the tiles are encrypted and compressed the costs for loading them are the mai
 
 
 
-\section{Displaying the Graph}
+\section{Displaying the Graph} \label{graph}
 
 % \begin{itemize}
 %     \item Wie ordnet man Knoten an?
@@ -127,6 +127,8 @@ Even though visualizing graphs on a high level is a common thing and impressive 
 Since the visualization of graph algorithms is not such common, there are multiple basic questions that need to be answered.
 Which segment should be shown in the beginning? How to visualize the progressing algorithm?
 And which basic features should be included for increasing the accessibility of the information displayed.
+\todo{how to display start and end}
+\todo{Maybe put this to Micellaneous}
 
 \subsection{Displaying the Tiles}
 
@@ -195,7 +197,7 @@ After having answered all those questions introduced in the previous chapters we
 
 In the end we will discuss some additional fancy features to give the visualization the last fancy touch.
 
-\todo{END}
+
 
 \chapter{Buillding the Visualization}
 
@@ -204,46 +206,104 @@ In this chapter we will discuss the questions introduced in \ref{questions}.
 
 \section{Displaying the Graph}
 
-This section we will take a closer look at the problematics introduced by \ref{graph} starting by the problem of aranging the nodes.
+This section we will take a closer look at the problematics introduced in \ref{graph} starting by the problem of aranging the nodes.
 As every node has given unique coordinates we will use those to arrange them on the screen.
 Therefore there are already many projections that calculate the position on the screen for given coordinates.
 The porbably most intuitive way of projecting coordinates is to just see the longitude and the latitude as coordinates on a two-dimensional graph.
-This projection is called Equirectangular Projection.
+This projection is called Equirectangular projection.
 \par
 An other common projection is the Mercator Porjection.
-In Mercator Projection the longitudes are all equally spaced but the latitudes move away from each other the bigger the distance to the equator becomes.
+In Mercator projection the longitudes are all equally spaced but the latitudes move away from each other the bigger the distance to the equator becomes.
+
+\todo{center the first image}
 
 \begin{figure}[h!]
 	\includegraphics[width=.5\textwidth]{Images/Equirectangular_projection_SW.jpg}
 	\includegraphics[width=.5\textwidth]{Images/Mercator_projection_SW.jpg}
-\caption[]{Equirectangular Projection(left) vs. Mercator Projection(right)}
-\label{fig:search_fronts_ell}
+\caption[]{Equirectangular projection(left) vs. Mercator projection(right)}
+\label{fig:projections}
 \end{figure}
 
 
+As we see in \ref{fig:projections} the difference of both projections is not that serious.
+The only in extreme northern/southern areas the differencee is clearly visible.
+As mercator is used in most notable map representations as for example Google Maps and is often used for navigation it might be desirable to use mercator.
+Though most graphs we will be wokring on do not lie in those extreme areas an thus the added value is not worth the added complexity in calculation.
+Therefore we will use the Equirectangular projection for our visualization.
 
-As every node has unique coordinates that maps to their position on the earth the first idea of arrangement is to just use the longitude as x-value and the latitude as y-value und plot them as if the earth was a rectangle.
-This seems to be the easiest way to plot the nodes.
-An alternative would be to use one of the more common projections as for example the mercator projection.
-We could also ignore the given coordinates and try to order the nodes based on the edges and try to archive that the costs of an edge is represented by its length in the visualization.
 
+\paragraph{Edges}
 
+It is common to display edges as straight lines.
+We could try to display the length or even the costs of the edge by bending them depending on the height of the value.
+As the air distance between two nodes and the length of the connecting edge does not derrive that much in general we will display edges by simple straight lines in the visualization.
 
-As the benfit
-Warum einfache darstellung?
 
 \paragraph{Nodes}
-In most visualizations used for (Lehre) nodes are represented by a circle but those only display small graphs. As we are going to display much bigger graphs
 
+In most visualizations of graph algorithms, that are mainly used for teaching, nodes are represented by circles.
+Though those visualizations perform only on small graphs and are went threw step by step.
+As we are going to display much bigger graphs we have to take a look at representation of nodes as well.
+In our graphs every node is connected to at least one edge. If not, the only way for the node to be accessed during our algorithms would be to be the start or the target node of the algorithm.
+As every node belongs to at least one edge a vizual representation of the node itself is redundant, as it is already represented by at least one end of an edge.
+
+\todo{END}
 
 
 \section{Displaying the Algorithm}
 
+In this section we are going to the core of the visualization. Except of visualizing one state of the graph, we now want to create a way to see graph changes during the algorithm.
+
 
 \subsection{Basics}
 
+As we want to display a process now, we will move through the algorithm step by step.
+For the visualization this would mean for our visualization to start with a white space and then add the processed edges in the order of their appearance during the algorithm.
+
+\begin{figure}[h!]
+	\includegraphics[width=.5\textwidth]{Images/placeholder.png}
+	\includegraphics[width=.5\textwidth]{Images/placeholder.png}
+\caption[]{Two consecutive steps in the visualization}
+\label{fig:projections}
+\end{figure}
+
+As we see in (Bild oben) stepping threw the algorihtm like this helps to understand how the  search front evolves quite well.
+Now we still need to think about which window of the graph we want to show.
+Thereby we have to respect that we have to chose the window big enough to see every action happening during the algorithm, but small enough to have as little unused space as possible, when the search front is fully evolved.
+\par
+Therefore we could on the one hand take the start and the end node as outer points. Then we would try to estimate the most of points of the search front and add a margin depending on this estimation.
+\\
+On the other hand we can examine all edges processed before we start to visualize the algorithm. Thereby we could find out the exact borders of the search front.
+
+\begin{figure}[h!]
+	\includegraphics[width=.5\textwidth]{Images/placeholder.png}
+	\includegraphics[width=.5\textwidth]{Images/placeholder.png}
+\caption[]{Estimation method with quite a good estimation(left) vs. Preprocessing method(right)}
+\label{fig:projections}
+\end{figure}
+
+As the second method finds the perfect window to display we definitive would prefer this method over the other though the precision comes with higher costs which will lead to a higher initial loading time of the visualization.
+In the following we will continue using the second method as the perfect view is worth the time to us.
+\par
+Now that we found the snippet we want to display there would still be a possibility to minimize the empty space on our screen.
+Currently we are using the same scale on the x-axis and the y-axis. Therefore on one axis there would be empty space.
+\todo {Erklärung warum}
+Therefore we could also just spread the graph over the whole screen.
+
+\begin{figure}[h!]
+	\includegraphics[width=.5\textwidth]{Images/placeholder.png}
+	\includegraphics[width=.5\textwidth]{Images/placeholder.png}
+\caption[]{Same scaled axes(left) vs. Spreaded axes(right)}
+\label{fig:projections}
+\end{figure}
+
+As we see in (Image above) this reduces the unused space to a minimum. On the other hand we would loose a lot of unerstandibility, as the length of a line on the screen would indicate the length of the real edge even less.
+Therefore we decided to go with the uniformly scaled axes.
+
 
 \subsection{Displaying the Tiles}
+
+In \ref{specification} we described the importance of the tiles the graph is splitted in. As the tiles are the mayjor cost factor during the algorithm we should definetly respect them in our visualization.
 
 
 \subsection{Visualizing the Cache}
@@ -258,6 +318,7 @@ In most visualizations used for (Lehre) nodes are represented by a circle but th
 \begin{itemize}
 	\item verschiedene Projektionen
 	\item knoten anordnen mit kanten mit länge = kosten
+	\item different layers
 \end{itemize}
 
 
