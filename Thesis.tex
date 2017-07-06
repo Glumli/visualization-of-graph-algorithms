@@ -54,50 +54,49 @@ In the following, we will describe the process of developing a sensemaking visua
 \chapter{Preliminaries} \label{questions}
 
 In this chapter, we will lay the foundation on which we are going to build the visualization in \cref{main}.
-\newline Thereby in \cref{specification} we are going to look at the basis of the algorithm that is going to be visualized, the data the algorithm is running on and finally combine both and therefore continue on how the given data influences the algorithm.
-In the following sections, we are going to take a look at questions that need to be answered for developing the visualization.
+\newline Thereby in \cref{specification} we are going to look at the basis of the algorithms that are going to be visualized, the data the algorithms are running on and finally combine both and therefore continue on how the given data influences the algorithms.
+Following this, we are going to take a look at questions that need to be answered for developing the visualization.
 Those will then be answered in the corresponding sections in \cref{main}
 
 \section{Problem Specification} \label{specification}
 
 % Routing
-The algorithm that is going to be displayed in out visualization is a graph algorithm, or more precisely a shortest path algorithm.
+The algorithms that are going to be displayed in out visualization are graph algorithms, or more precisely, shortest path algorithms.\\
 A shortest path algorithm, in general, has the goal to find a path from a start node to a target node in a graph.
 A graph consists of multiple node and edges.
 Thereby an edge connects exactly two nodes in either one direction, in a directed graph, or both directions, in an undirected graph.
-Depending on the graph nodes and/or edges can be so-called weighted, which describes the costs that occur when a route passes the element.
+Depending on the graph, nodes and/or edges can be so-called weighted, which describes the costs that occur when a route passes the element.
 The shortest path algorithm has to find a path with the smallest possible summed costs.
 
 % Basic algorithm
-\par The groundwork of the algorithm was the so-called Dijkstra algorithm and its improvement the A*-algorithm.
+\par The groundwork of the algorithm was the Dijkstra algorithm and its improvement the A*-algorithm.
 The Dijkstra algorithm starts at the start node wherefrom it observes its neighbors, the nodes that are connected to the start node by an edge.
 At any point, the algorithm can observe any neighbor of the already explored nodes.
 It decides which node should be explored next, depending on the overall path costs from the start node.
 The algorithm is done as soon as it observes the target node.
 This leads to a more or less circular spreading around the start node.
-The A*-algorithm adopts a similar strategy with the difference that it uses some heuristic which leads to a more target-oriented spreading and therefore less observed nodes which means a faster algorithm.
+The A*-algorithm adopts this strategy with the difference that it uses some heuristic which leads to a more target-oriented spreading and therefore less observed nodes which results in a faster algorithm.
 
 % Data
 \par The graph the algorithm is running on was derived from a road network.
 Therefore every node represents a crossing point and every edge stands for a street or even a ferry route.
-For our graph this means that the edges are directed and have a certain weight, which can be calculated using the speed of the edge and its length.
+For our graph, this means that the edges are directed and have a certain weight, which can be calculated using the speed of the edge and its length.
 In addition, every node has given a pair of coordinates, which refers to a certain position on the Earth.
 The special thing about the graph is a geographical grid that divides the graph into tiles.
-Therefore every node belongs to exactly one tile which is accessed whenever one of the related tiles is observed.
+Therefore every node belongs to exactly one tile which is accessed whenever one of the related nodes is observed.
 Those tiles have been introduced by the Navigation Data Standart (NDS) which requires that every tile is encrypted and compressed.
 
 % impact
-\par The NDS impacts the algorithm in so far as accessing tiles becomes the major effort, as decrypting and decompressing is costly and therefore time-consuming.
-Hence the algorithm should access as little tiles as possible.
-As the algorithm is developed for portable devices, the algorithm has access to the so-called cache, a fast storage with limited size.
+\par The NDS impacts the algorithms in so far as accessing tiles becomes the major effort on runtime, as decrypting and decompressing is costly and therefore time-consuming.
+Hence the algorithms should access as little tiles as possible.
+As the algorithms are developed for portable devices, the algorithms have access to the so-called cache, a fast storage with limited size.
 Since tiles can be stored in the cache, accessing a tile is only costly whenever it is not in the cache.
 Due to the limited size of the cache, loading a tile requires removing another, as soon as the cache is full.
 
 
-
 \section{Displaying the Graph} \label{graph}
 
-For developing a visualization of a graph algorithm it is probably useful to think about the basics and therefore about how to display the graph itself first.
+For developing a visualization of a graph algorithm it is necessary to think about the basics and therefore about how to display the graph itself first.
 For displaying the graph we will have to think about how we are going to arrange the nodes on the screen.
 As we already have some positioning of the notes, even though it is based on a three-dimensional body, this might be a good starting point.
 \\After having figured this out, we need to discuss the way we are going to represent nodes and edges.
@@ -108,7 +107,7 @@ Therefore we will evaluate common methods used by e.g. teaching.
 
 In this section, we will take a look on how to transform the static representation of the graph to visualization of an algorithm.
 The challenge here is to transform the graph to a sequence of multiple states of the algorithm.
-Furthermore, we are going to examine how to include all information in the visualization, necessary to support the researcher in understanding and developing the algorithm.
+Furthermore, we are going to examine how to include all information in the visualization, necessary to support the researcher in understanding and developing the algorithms.
 
 
 \subsection{Basics}
@@ -121,8 +120,8 @@ We need to think about how to place the displayed on the screen and whether and,
 
 \subsection{Displaying the Tiles}
 
-As we are going to have a basic idea on how to visualize a graph.
-Hence we can now start thinking about how to modify the visualization for fitting more the introduced graph and algorithms presented in \cref{specification}.
+At this point, we are going to have a basic idea on how to visualize the algorithms.
+Thus we can now start thinking about how to modify the visualization for fitting the in in \cref{specification} introduced graph and algorithms better.
 Therefore we will take a look at possibilities of representing the tiles in the visualization.
 
 
@@ -131,332 +130,338 @@ Therefore we will take a look at possibilities of representing the tiles in the 
 Now that we found a way to represent the tiles, we can finally find a way how to make the cache visible.
 Firstly we want to know at every point which blocks are in the cache.
 Furthermore, the information how often is in fact the most important information to display, as the goal of improving the algorithm is, to reduce the amount of overall tile loads as much as possible.
-Hence it would be highly desirable to recognize how well an algorithm performs at one glace.
+Hence it would be highly desirable to recognize how well an algorithm performs at one glance.
 Moreover, it should be possible to analyze a specific algorithm and to determine in which regions perform better or worse.
 
 
 \section{Compare algorithms}
 
-As during the algorithm research multiple approaches are developed, there is the need to compare those approaches.
+
+During the algorithm research multiple approaches are developed.
+Therefore there is a need to compare those approaches.
 In this section, we will tackle this challenge and think about a possibility to compare two algorithms.
 
 
 \section{Miscellaneous}
 
-Now that we are able to visualize algorithms on a higher-level, we will develop even add some information to the visualization, or increases the accessibility of the information.
+Now that we are able to visualize algorithms on a higher-level, we will develop fetarutes that add some additional information to the visualization, or increase the accessibility of the information.
 
 
 
 \chapter{Building the Visualization} \label{main}
 
-In this chapter we will discuss the questions raised in \cref{questions} and thereby step by step build the visualization.
+In this chapter, we will discuss the questions raised in \cref{questions} and thereby build the visualization step by step.
 
 
 \section{Displaying the Graph} \label{graph}
 
 In \cref{graph} we already introduced the issues we are going to tackle in this section.
-We will therefore start by finding a way to arrange the nodes in our visualization which will all future features as well.
-In fact we are going to decide how to map a pair of coordinates onto our two-dimensional screen, as the position of a node is given by only one pair of coordinates as well.\\
+We will, therefore, start by finding a way to arrange the nodes in our visualization.
+In fact, we are going to decide how to map a pair of coordinates onto our two-dimensional screen, as the position of a node is given by only one pair of coordinates as well and therefore lay the foundation for many future features.\\
 
-A very common way to project the earth on a two-dimensional representation is the Mercator projection.
-This projection is for example used by the web mapping service Google Maps and was originally developed for nautical cartography in 16th century.
-Hence it suggests itself to be used for our visualization of routing algorithm.
-The way the meractor projection works is, that it at first maps the coordinates on a two-dimensional map by using the coordinates as if the earth would be flat.
-This results in a more and more distorted map the closer it comes to the poles, as the actual distance between the longitudes on the earth decreases the closer they come to the poles.
-Therefore the Mercator projection simply increases the distance of the latidues in relation to the distance to the poles.
-This leads on the one side to a nondistorted map that hence can be used for nautical navigation, but on the other side this leads to the effect that countries on or close to the equator appear much smaller than more distant ones.
-In fact the Antarctica would acutally be infinitely big in mercator projection.\\
+A very common way to project the Earth on a two-dimensional representation is the Mercator projection.
+This projection is for example used by the web mapping service Google Maps and was originally developed for nautical cartography in the 16th century.
+Hence it suggests itself being used for our visualization of routing algorithm.\\
+The way the Mercator projection works is, to map the coordinates on a two-dimensional map by using the coordinates as if the earth would be flat.
+This results in a more and more distorted map the closer it comes to the poles, as the actual distance between the longitudes on the Earth decreases the closer they come to the poles.
+Therefore the Mercator projection simply increases the distance of the latitudes in relation to the distance to the poles.
+This leads on the one side to a nondistorted map that hence can be used for nautical navigation, but on the other side, this leads to the effect that countries on or close to the equator appear much smaller than more distant ones.
+In fact, the Antarctica would actually be infinitely big in Mercator projection.
 
-As the mercator projection would require calculation for every coordinates we wanted to map we further take a look on an alternative way of projecting the earth.
-The Equirectangular projection starts the same way as the Merfcator projection and simply plots the coordinates as in a linear scaled coordinate system.
-But Contrary to the Mercator projection it stops at this point.
-As a result the countries closer to the poles are not bigger in general, but broader than those close to the equator.
+As the Mercator projection would require calculations for every coordinate we wanted to map we further take a look at an alternative way of projecting the earth.\\
+The Equirectangular projection starts the same way as the Mercator projection and simply plots the coordinates as in a linear scaled coordinate system.
+But contrary to the Mercator projection it stops at this point.
+As a result, the countries closer to the poles are not bigger in general, but broader than those close to the equator.
 
 \begin{figure}[H]
-	\includegraphics[width=.5\textwidth]{Images/Mercator_projection_SW.jpg}
-	\includegraphics[width=.5\textwidth]{Images/Equirectangular_projection_SW.jpg}
+    \includegraphics[width=.5\textwidth]{Images/Mercator_projection_SW.jpg}
+    \includegraphics[width=.5\textwidth]{Images/Equirectangular_projection_SW.jpg}
 \caption[]{Mercator projection(left) vs. Equirectangular projection(right)}
 \label{fig:projections}
 \end{figure}
 
-In \cref{fig:projections} we can see, what we already descibed before.
+In \cref{fig:projections} we can see, what we already described before.
 In contrast to the Equirectangular projection on the right that looks quite swaged near the poles, the Mercator projection on the left stretches vertically in those parts, which leads to a much more natural looking map.
-Nevertheless the Equirectangular projection has the huge benefit, that no extra calculation is necessary to use it.
-Therefore and due to the fact that the effect of the mercator projection is quite low, we are going to use the Equirectangular projection for further work.
+Nevertheless, the Equirectangular projection has the huge benefit, that no extra calculation is necessary to use it.
+Therefore and due to the fact that the effect of the Mercator projection is quite low, we are going to use the Equirectangular projection for further work.
 
 
 \paragraph{Edges}
-At this point we've already deviced how to arrange the nodes on the screen.
-That is why we can now think about a way to represent the basic elemtents of the graph, starting with the edges.
-The first thing that comes into mind when tinking about edges, is that they connect nodes.
-Therefore the first think that comes into mind, when thinking about drawing edges, which is also widely seen in graph visualizations, is to represent them by straight lines which connect two nodes.
+At this point, we've already decided how to arrange the nodes on the screen.
+That is why we can now think about a way to represent the basic elements of the graph, starting with the edges.
+The most obvious characteristic of edges, is that they connect nodes.
+Therefore the first thing that comes to mind, when thinking about drawing edges, which is also widely seen in graph visualizations, is to represent them by straight lines.
 This might also be the best fit for our visualization, as it can be implemented without any bigger performance costs and even shows the length of the by the edge represented street quite well.\\
-A possible improvement could still be archieved by displaying a more precise length and the other information we got about the edges, the speed.
+A possible improvement could still be achieved by displaying a more precise length and the other information we got about the edges, the speed.
 An idea for showing a more precise length is, to bend the lines depending on the factor between the linear distance and the given length of two nodes.
 The speed could be represented by coloring the lines.
-For example a slow edge could be colored red and a faster one green.\\
-As clearness and comprehensibility is a major goal we want to archieve, we are going to stick with the simple onecolored lines for now.
+For example, a slow edge could be colored red and a faster one green.\\
+As clearness and comprehensibility is a major goal we want to achieve, we are going to stick with the simple single-colored, straight lines for now.
 
 
 \paragraph{Nodes}
-In most common visoalizations of graphs nodes are represented as circles.
+In most common visualizations of graphs nodes are represented as circles.
 Those visualizations are mostly used for smaller graphs, which are used to explain the basic concepts of an algorithm.
-Thus we should reconsider this representation of nodes, as we are going to display graphs with millions of nodes.
-Scince we know that at the end of every edge is exactly one node, we can clearly identify every node as long as the node is connected to the graph.
-Therefore we should consider to not add any additional representation of those nodes to the visualization as they do not add any value to it and only make the visualitzation more crowded.
-But how to proceed with the remaining nodes, that are not connected to any other?
+Thus we should reconsider this representation of nodes, as we are also going to display graphs with millions of nodes.
+Since we know that at the end of every edge is exactly one node, we can clearly identify every node, as long as the node is connected to any other edge.
+Therefore we should consider to not add any additional representation of those nodes to the visualization as they do not add any value to it and only make the visualization more crowded.
+But how to proceed with the remaining nodes?
 As the only way for those nodes to play a role during our algorithm would be to be the start or the target node, we can just not visualize them for the sake of clarity.
 
 
 \section{Displaying the Algorithm}
 
-In this section we are going to take a look on how to transform the represenation a graph, as discussed in \cref{graph}, in a visualization of an algorithm.
-The difference between the representation of a graph and the vizalization of a graph algorithm is, that the visualization of an algorithm is a process which means that we want to display what is happening while the algorithm progresses.
+In this section, we are going to take a look on how to transform the representation a graph, as discussed in \cref{graph}, in a visualization of an algorithm.
+The difference between the representation of a graph and the visualization of a graph algorithm is, that the visualization of an algorithm is a process which means that we want to display what is happening while the algorithm progresses.
 
 \subsection{Basics}
 For showing the process of the algorithm we are going to start with an empty space and then add one edge after another as they have been passed by the algorithm.
-For a better highlighting of the last passed edge we are going to highlight this specific edge.
+For a better highlighting of the last passed edge, we are going to highlight this specific edge.
 
 \begin{figure}[H]
-	\includegraphics[width=.5\textwidth]{Images/vis-step-one.png}
-	\includegraphics[width=.5\textwidth]{Images/vis-step-one.png}
-\caption[]{Two consecutive steps in the visualization. Every white line represents one Edge and the last processed edge is colored green.}
+    \includegraphics[width=.5\textwidth]{Images/vis-step-one.png}
+    \includegraphics[width=.5\textwidth]{Images/vis-step-one.png}
+\caption[]{Two consecutive steps in the visualization. Every black line represents an edge and the last processed edge is colored blue.}
 \label{fig:two-steps}
 \end{figure}
 
 In \cref{fig:two-steps} we can see that we get a good understanding of how the algorithm evolves.
 We will now add the shortest path that was by the algorithm.
-Thereby we know at any point what the start and target points of the algorithm are and how far the algorithm is finding the shortest path.
+Thereby we know at any point where the start and target nodes of the algorithm are and how far the algorithm is finding the shortest path.
 
 \begin{figure}[H]
- \
  \includegraphics[width=\textwidth]{Images/vis-result-path.png}
-\caption[]{Adding the final path to the visualization. Represented by the black lines.}
+\caption[]{Adding the final path to the visualization. Represented by the green line.}
 \label{fig:result-path}
 \end{figure}
 
-At this point we will have to think about where we want to place the edges on the screen.
-As the displayed graph grows as the algorithm progresses there is the risk of growing out of the screen, when we estimate the graph to small.
-On the other side we could also estimate the graph to big, which would result in much unused space on out screen.\\
-We will now have the choice to either try to estimate the extent of the explored graph of the fully evolved algorithm or iterate over the algorithm before visualizing it.
+At this point, we will have to think about where we want to place the edges on the screen.
+As the displayed graph grows as the algorithm progresses there is the risk of growing out of the screen when we estimate the final graph too small.
+On the other side, we could also estimate the graph to big, which would result in much unused space on out screen.\\
+We will now have the choice to either try to estimate the extent of the explored graph of the fully evolved algorithm or iterate over the algorithm before visualizing it, for finding out its borders.
 By iterating over the whole algorithm we would find out the exact borders of the graph we want to show.
-With this knowledge about we could then adjust the size of the fulle evolved graph flush with the bordes of our visualization on two sides.
+With this knowledge about we could then adjust the size of the fully evolved graph flush with the borders of our visualization on two sides.
 
 \begin{figure}[H]
-	\includegraphics[width=.5\textwidth]{Images/vis-estimation.png}
-	\includegraphics[width=.5\textwidth]{Images/vis-preprocessing.png}
+    \includegraphics[width=.5\textwidth]{Images/vis-estimation.png}
+    \includegraphics[width=.5\textwidth]{Images/vis-preprocessing.png}
 \caption[]{Estimation method with quite a good estimation(left) vs. Preprocessing method(right)}
 \label{fig:sections}
 \end{figure}
 
-The difference between those two cutouts is not that drastic, as we see in \cref{fig:sections}.
-For the shown estimation we used the linear distance between start and target node as basis.
+The difference between those two cutouts is wuite big, as we see in \cref{fig:sections}.
+For the shown estimation we used the linear distance between start and target node as the basis.
 Thereby we made sure that the visualization shows everything that is happening in a radius of a little more than the linear distance between start and target node around the start node.
-Even though this estimation was not that bad, we can never be sure that we get the whole graph on the screen when estimating.
-Of course better estimations are possible, but the better we would like the estimation to be, the more information we would need about the algorithm we show and the underlying graph, which we want to avoid.
-In addition at the graph in \cref{fig:sections} unused space is not to bad, as it quite manageable.
-On bigger graphs we want to make sure to use the space we got as effective as possible.
-Therefore we are going to continue using the preprossessing method for estimating the window we are going to show.\\
+Even though this estimation was quite generous, we can never be sure that we get the whole graph on the screen when estimating.
+In genreal better estimations are possible as well, but the better we would like the estimation to be, the more information we would need about the algorithm we show and the underlying graph, which we want to avoid.
+Therefore we are going to continue using the preprocessing method for estimating the window we are going to show.\\
 
 Now that we found the section we want to display, there would still be a possibility to minimize the empty space on our screen.
-Currently we are using the same scale on both axes.
+Currently, we are using the same scale on both axes.
 This means that there could be a bigger empty space on one axis.
-What we could do now is to change the scale on one of the axis' and thereby spread the graph over the whole screen.
+What we could do now is to change the scale on one of the axes and thereby spread the graph over the whole screen.
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{Images/vis-preprocessing-streched.png}
+    \includegraphics[width=\textwidth]{Images/vis-preprocessing-streched.png}
 \caption[]{Preprocessing method with additional streching to the borders of the visualization}
 \label{fig:spreaded_axis}
 \end{figure}
 
 As we see in \cref{fig:spreaded_axis} this reduces the unused space to a minimum.
-Though we would loose a lot of unerstandibility, as the length of a line on the screen would indicate the length of the real edge even less.
+Though we would loose a lot of understandability, as the length of a line on the screen would indicate the length of the real edge even less.
 Therefore uniform scaled axes are the better choice for our graph visualization.
 
 
 \subsection{Displaying the Tiles} \label{tiles}
 
-In \cref{specification} we described that the graph is splitted into tiles, which due to their encryption and compression should be loaded as rarely as possible.
-Therefore the tiles are the major cost factor during the algorithm and thus should be respect in the visualization.
-A first idea for doing this is to just display all edges of a tile as soon as a node of this tile has been accessed the first time.
+In \cref{specification} we described that the graph is split into tiles, which due to their encryption and compression should be loaded as rarely as possible.
+Therefore the tiles are the major cost factor during the algorithm and thus should be respected in the visualization.
+A first idea for doing this is to display all edges of a tile as soon as a node of this tile has been accessed the first time.
 
 \begin{figure}[H]
-	\includegraphics[width=0.5\textwidth]{Images/vis-tile-blocks-small.png}
-	\includegraphics[width=0.5\textwidth]{Images/vis-tile-blocks-big.png}
+    \includegraphics[width=0.5\textwidth]{Images/vis-tile-blocks-small.png}
+    \includegraphics[width=0.5\textwidth]{Images/vis-tile-blocks-big.png}
 \caption[]{Displaying all loaded edges. Those that has been passed by the algorithm in black and those that has only been loaded in grey.}
 \label{fig:basic_tiles}
 \end{figure}
 
 As a result, we can see a basic tile structure in the visualization, which leads to a basic understanding about the loaded tiles during the algorithm.
-However, as the algotithm evolves and the displayed graph grows tiles become much harder to distinguish from each other and especially in the inner graph it is not possible anymore to differentiate between different tiles.
+However, as the algorithm evolves and the displayed graph grows tiles become much harder to distinguish from each other and especially in the inner graph it is not possible anymore to differentiate between different tiles.
 On bigger graphs, as in \cref{fig:basic_tiles}, the tiles can not be distinguished from each other at all.
-Therefore we want to add a new type of elements to the visualization that will then represent the tiles.
-As we use the Equirectangular projection, as mentioned in \cref{graph}, every tile is rectangular and has the same size.
-Hence, it is possilbe to add rectangles around the tiles without any bigger effort.
+Therefore we want to add a new type of elements to the visualization, that will then represent the tiles.
+Thanks to the decision to use the Equirectangular projection, mentioned in \cref{graph}, every tile is rectangular and has the same size.
+Hence, it is possible to add rectangular shapes around the tiles without any bigger effort.
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{Images/vis-rectangular-tiles.png}
+    \includegraphics[width=\textwidth]{Images/vis-rectangular-tiles.png}
 \caption[]{Representing tiles through rectangles.}
 \label{fig:rectangle_tiles}
 \end{figure}
 
-
-As can be seen in \cref{fig:rectangle_tiles} it is now possible to distinguish the single tiles much better.
-Furthermore the rectangles became the most important source of information on a higher level as we can recognize most edges only barely and even became obstructive for understanding.
-The biggest value added by the edges on this level is the information about the current step of the algorithm which difficult to recognize on bigger graphs.
-As we want to change this, we will transfer this information to a higher level and therefore color the tile the algotihm is currently processing.
-As a result we can now stop displaying the edges which makes the visualization much more uncluttered and leads to a major performance boost.
+As we can be seen in \cref{fig:rectangle_tiles} it is now possible to distinguish the tiles much better.
+Furthermore, the rectangles became the most important source of information on a bigger routes as the biggest part of the edges is not recognizable individually and they even became obstructive for the comprehensibility.
+The biggest value added by the edges on this level is the information about the current step of the algorithm which becomes difficult to recognize on bigger graphs as  well.
+As we want to change this, we will transfer this information to a higher level and therefore color the tile the algorithm is currently processing.
+As a result, we can now stop displaying the edges which makes the visualization much more uncluttered and leads to a major performance boost.
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{Images/vis-current-tile.png}
+    \includegraphics[width=\textwidth]{Images/vis-current-tile.png}
 \caption[]{Representing tiles through rectangles.}
 \label{fig:color_current_tile}
 \end{figure}
 
 
-In \cref{fig:color_current_tile} we see that we got a tile based visualization now.
-Even though this visualization is still clean on a higher level, understanding the actuall approach of the algorithm is still hard, as the processed tile is colored to short to really process the information.
-Hence we want to try to fix this by introducing aging of tiles.
-This means that the currently processed tile is still collored but different than in the aproach befor it doesn't directly lose its color, but slowly.
-In every step of the algorithm the tile is becoming a bit brighter.
+In \cref{fig:color_current_tile}, we see that we got an abstract visualization now, that visualizes the algorithms using rectangles.
+Even though this visualization is clean for bigger routes, understanding the actual behavior of the algorithms is still hard, as a single tile is only colored for milliseconds when accessed and therefore it is hard to see the loading of tiles in a larger context.
+Hence, we want to try to fix this by introducing a method, we will call aging of tiles.
+This means that the currently processed tile is still colored, but different than in the approach before, we do not uncolor it immediately, but over time.
+Therefore the tile becomes a bit brighter every step of the algorithm.
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{Images/vis-aged-coloring.png}
-\caption[]{Displaying earlier loaded tiles darker.}
+    \includegraphics[width=\textwidth]{Images/vis-aged-coloring.png}
+\caption[]{Age based coloring. Newly loaded tiles are colored blue and get brighter the longer they have not been loaded.}
 \label{fig:color_aged_tile}
 \end{figure}
 
-
-In \cref{fig:color_aged_tile} we see that this aproach strongly simplifies the way of acces information and leads to a much better understanding of the sequence of accesses.
+In \cref{fig:color_aged_tile} we see that this approach leads to a much better understanding of the sequence of tile-loads.
+Thereby it leads to a much better comprehensibility of how the algorithm performs on the underlying graph and the specific route.
+In \cref{fig:color_aged_tile} for example, we can see that most of the recently loaded tiles are located on the outside of the explored graph, but there are three bigger parts in the inner part which should maybe be examined more specific.
 
 
 \subsection{Visualizing the Cache}
 
-In \cref{specification} explained that tiles are loaded in the cache, a fast storage
-of limited size, before they are accessed.
-Whenever a tile that is in the cache needs to be accessed by the algorithm no additional costs arise.
-Therefore the loading of tiles into the cache the most expensive operation.
-Scince the cache plays such a big role it should not be ignored during the visualization as well.
-Because we already introduced the tiled visualization in \cref{tiles} we have a good foundation to work with.
-As a first aproach we will color all the tiles that are currently stored in the cache and therefore directly accessible for the algortihm.
-
-
+Based on what we build in \cref{tiles} we can now start thinking about the cache.
+In \cref{specification} we already mentioned, that the accessing of a tile itself is not the expensive operation for the algorithm, but loading a tile into the cache.
+Therefore we should definitely include the cache into the visualization somehow.
+Because we already introduced the tiled visualization in \cref{tiles}, we have a good foundation to work with.
+As a first approach, we will color all the tiles that are currently stored in the cache and therefore accessible for the algorithm without extra costs.
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{Images/vis-basic-cache.png}
-\caption[]{Representing the cache by coloring tiles.}
+    \includegraphics[width=\textwidth]{Images/vis-basic-cache.png}
+\caption[]{Representing the cache. The cache is represented by the blue rectangular shapes.}
 \label{fig:cache_coloring}
 \end{figure}
 
+In \cref{fig:cache_coloring} we can see, that we did not color the tiles based on their age anymore.
+Due to the colored cache, we achieved an improved understanding of past loaded tiles and the aged based coloring would furthermore distract from the important cache.
 
-As we can see in \cref{fig:cache_coloring} the aged based coloring is not neccessary anymore. Due to the colored cache we archieved an improved understanding of past loaded tiles and the aged based coloring would futhermore distract from the important cache.
-
-At this point it would be good to see how often a tile was loaded  in the cache, by only seeing one point of the visualization, without knowing what happened before.
-Therefore we now want to color all the tiles except those who are in the cache according to the frequency they have been loaded.
-Now a tile would be white after the initial loading and with every time it is loaded it would become a little redder.
+At this point, it would be good to see how often a tile was loaded in the cache, at any point of the visualization, without knowing what happened before.
+Therefore, we now want to color all the tiles, except those that are in the cache, according to the frequency they have been loaded.
+As red is often associated with negative occurrences we will now color a tile a little redder every time it was loaded into the cache.
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{Images/vis-rgb-cache.png}
-\caption[]{Coloring the tiles according to the amount of reloads.}
+    \includegraphics[width=\textwidth]{Images/vis-rgb-cache.png}
+\caption[]{Coloring the tiles according to the amount of reloads. Red tiles has been loaded more often.}
 \label{fig:reload_coloring_white}
 \end{figure}
 
-
-By coloring the reloads this way, we can now see how good our algorithm performs and in which regions more reloading is happening.
-Currently bigger reloadings are clearly visible, but when in comes to small differences those are only barely visible.
-Therefore we want to try another color scale.
-By setting the color of once loaded tiles to green and turn it into red the more the tile was loaded we hope to archieve a bigger and clearer contrast between slightly different tile loads.
-\todo{discuss hsv?}
+By coloring the reloads this way, we can now see how good our algorithm performs and in which regions more reloads occur.
+With this color scheme bigger differences in tile loading can be distinguished from each other easily.
+Nevertheless smaller differences are hard to recognize.
+Therefore, we want to try another color scale.
+By setting the color of once loaded tiles to green and turn it into red the more the tile was loaded we hope to achieve a bigger and clearer contrast between slightly different tile loads.
+In addition, green fits great to the association of red, as it is often used as an antagonist of red and is often associated with positive occurrences.
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{Images/vis-hsv-cache.png}
+    \includegraphics[width=\textwidth]{Images/vis-hsv-cache.png}
 \caption[]{Changed color scheme. Now the tiles change their color from green to red.}
-\label{fig:reload_coloring_white}
+\label{fig:reload_coloring_hsv}
 \end{figure}
 
-
-As we see the different reload levels are now much easier to distinguish.
-
+In \cref{fig:reload_coloring_hsv} we see the differences between two similar values a little better now.
+In addition, the graph distinguished from the background much better now and the visualization looks much better.
 
 \section{Compare algorithms}
 
-After having developed multiple algorithms comparing different algorithms becomes more important.
+After having developed multiple algorithms, comparing different algorithms becomes more important.
 Therefore we could simply start two visualizations and display them next to each other.
 
 \begin{figure}[H]
-	\includegraphics[width=0.5\textwidth]{Images/placeholder.png}
+    \includegraphics[width=\textwidth]{Images/vis-compare-two.png}
 \caption[]{Running two visualizations next to each other.}
 \label{fig:two_visualization}
 \end{figure}
 
 
-As a result we would then see rough differences, for example in the search front, but smaller differences, as one a tile load more, are quite hard to see.
-For comparing algorithms we therefore need  a new variation of our visualization.
-The basic idea is to put two different algorithms over each other and so be able to compare two algortihms in one image.
-Therefore we could just split each tile in two and color the left half according to the reloads of one algorithm and the right side according to the other.
+As a result we can now see rough differences, for example when one algorithm explores more tiles than the other.
+Smaller differences, as when some tiles are slightly more loaded than in one of the algorithms are not visible without longer comparison.
+That is what we see in \cref{fig:two_visualization}.
+The algorithms perform differently, but we can not recognize by just putting both visualizations next to each other.
+For comparing algorithms we, therefore, need a new variation of our visualization.
+We will now reduce the distance between those two visualizations.
+The idea is, that smaller differences are better visible when tiles with the same location are displayed directly next to each other.
+Therefore we split each tile in two and color the left half according to the reloads of one algorithm and the right half according to the reloads of the other algorithm.
 
 \begin{figure}[H]
-	\includegraphics[width=0.5\textwidth]{Images/placeholder.png}
-\caption[]{Splittin the tiles.}
+    \includegraphics[width=\textwidth]{Images/vis-compare-splitted.png}
+\caption[]{Splitting the tiles.}
 \label{fig:splitted tiles}
 \end{figure}
 
 
-We now have a much better way to compare two algorithms, as there is no distance anymore between the matching tiles but it is still difficult to clearly identify the differences without longer observation, as it is quite confusing.
-For changing this we want to think about now if it really is  necessary to know how often a tile was loaded in a specific algorithm or if showing the difference between the tile-loads is enough.
-For finding out, we will try out the second idea as well.
-Therefore we calculate the difference between the amount of tile loads for each tile.
-Then we display all the tiles that has been accessed by at least one algorithm and color those greenish that have been loaded more often by the first algorithm.Those which has been loaded more often by the second algotihm are colored reddish.
-The more intense the color the bigger is the difference in the amount of tile loads.
+We now have a much better way to compare two algorithms, as there is no distance anymore between the matching tiles.
+However, it is still difficult to clearly identify the differences without longer observation, as the split tiles are quite confusing.
+It is very hard to associate one tile with one of the algorithms.
+For changing this, we want to think, whether it is necessary to know how often a tile was loaded in a specific algorithm or if showing the difference between the tile loads might lead to a better understanding.\\
+Therefore we will try out a different approach as well.
+We calculate the difference between the amount of tile loads from both algorithms for each tile.
+Then we display all the tiles that have been accessed by at least one algorithm and color those bluish that have been loaded more often by the first algorithm.
+Those that have been loaded more often by the second algorithm are colored reddish.
+The more intense the color, the bigger is the difference in the amount of tile loads.
 
 \begin{figure}[H]
-	\includegraphics[width=0.5\textwidth]{Images/placeholder.png}
+    \includegraphics[width=\textwidth]{Images/vis-compare-colored.png}
 \caption[]{Showing only the difference of tile loads.}
-\label{fig:splitted tiles}
+\label{fig:difference}
 \end{figure}
 
+In  \cref{fig:difference} we can now see that both algorithms are similar for most tiles.
+Still, there are many tiles that are loaded more often by the second algorithm and even some for which the first algorithm performs better.
 
 
 \section{Miscellaneous}
 
-In this section we will take a look on the visualization we have just build and think about some features that help to improve its accessibility.
-As we are working on big graphs with thousands of nodes even the tiled vizualization might become quite small.
-As we might want to look at a specific region more focussed we should be able to zoom into our navigation.
-When zoomed in we also need to be able move our view to the region we want to look at.
+In this section, we will take a look on the visualization we have just build and think about some additional features.
+For routes with a bigger distance, as for example in \cref{fig:reload_coloring_hsv}, we had to realize, that even the high-level view with displaying only the tiles, the single tiles become quite small.
+Therefore we might want to look into the specific region more focussed, which would be possible with a zoom feature.
+After having implemented this it is necessary to enable a way to navigate in the graph as well, as otherwise we would be stuck in the middle of the graph.
 
 \begin{figure}[H]
-	\includegraphics[width=0.5\textwidth]{Images/placeholder.png}
-	\includegraphics[width=0.5\textwidth]{Images/placeholder.png}
+    \includegraphics[width=0.5\textwidth]{Images/vis-zoom-small.png}
+    \includegraphics[width=0.5\textwidth]{Images/vis-zoom-large.png}
 \caption[]{View on whole graph(left) vz Zoomed view(right)}
-\label{fig:splitted tiles}
+\label{fig:zoom}
 \end{figure}
 
-
-An other idea to improve the information given by the visualization is to be able get some information about the edges.
-This might be useful when we want to understand, why specific tiles are loaded much more then others.
-On a high level view on the graoh this might not be usefull as the amount and the size of the edges would make it impossible to really get some information out of it, but as we are now able to zoom it becomes quite useful.
+We are now able to have a more detailed view on smaller parts of the graph, as we see in \cref{fig:zoom}.\\
+In \cref{tiles} we described that the edges are not recognizable individually on bigger routes.
+With the possibility of zooming, showing the edges might become a useful feature for our visualization again.
+This could, for example, be useful, when we want to understand, why specific tiles are loaded much more than others.
+As showing the edges can also make the visualization more confusing and thus distract from the important information, we will make showing the edges optional and make it possible to show and hide them at any point of the visualization.
 
 \begin{figure}[H]
-	\includegraphics[width=0.5\textwidth]{Images/placeholder.png}
+    \includegraphics[width=0.5\textwidth]{Images/vis-edges-no.png}
+    \includegraphics[width=0.5\textwidth]{Images/vis-edges-white.png}
 \caption[]{Viewing the graph itself in addition to the tiles.}
-\label{fig:splitted tiles}
+\label{fig:white edges}
 \end{figure}
 
-
-This seems to be a good compromise between visualizing only the edges and visualizing only the tiles.
-As we have some more information about the tiles we can also try to include them in the representation.
+Showing the edges helps to understand why some tiles in \cref{fig:white edges} a little in this cases.
+The tiles with more reloadings have a high amount of nodes and edges.
+Nevertheless, there are also other tiles with many nodes and edges, which are loaded less often.
+We will now try to include all additional information we got about the edges into their representation.
 As the length of the edges is already represented by the length of the lines in the visualization we only got the speed left to put into the edges.
 We will do this by coloring the edges according to their speed.
 Starting with red for 0 Km/h and going up to red for up to 150 Km/h.
 
 \begin{figure}[H]
-	\includegraphics[width=0.5\textwidth]{Images/placeholder.png}
-\caption[]{Speed based color sceeme.}
-\label{fig:splitted tiles}
+    \includegraphics[width=\textwidth]{Images/vis-edges-hsv.png}
+\caption[]{Speed based color scheeme. The background had to become a little brighter, when the edges are shown as it would be hard to recognize them clearly. }
+\label{fig:colored edges}
 \end{figure}
 
-
-\todo{Evaluate}
+In \cref{fig:colored edges} we can now see that in the tiles that are loaded more often there are not only many edges, but also those with only a small speed.
+The surrounding and less loaded tiles allow a higher speed in general.
 
 \chapter{Outlook}
 \begin{itemize}
