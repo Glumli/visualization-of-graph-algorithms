@@ -1,0 +1,47 @@
+Danke dir Thomas!
+Was wir also gemacht haben um das Blättern oder auch Laden von Kacheln zu verhindern ist, uns ein herkömmliches Verfahren als Basis genommen und verschiedenen Methoden entwickelt die an unterschiedlichen Stellen dafür sorgen, dass Kacheln weniger häufig geladen werden.
+Eine dieser Methoden möchte ich ihnen jetzt anhand eines Beispiels	erläutern.
+
+Was wir hier sehen ist eine kleine Karte auf der wir von Punkt 1 den kürzesten Weg zu Punkt 5 finden wollen.
+Die schwarzen Linien repräsentieren die Grenzen der Kacheln.
+Da das garnicht so einfach ist, versuchen wir es also mit dem Ursprünglichen Verfahren
+Das Verfahren macht nichts anderes als sich immer den nächst längeren Pfad der vom Startpunkt wegführt anzuschauen. 
+Wenn schließlich ein Pfad zum Zielpunkt führt, handelt es sich hierbei um den gesuchten Weg.
+Was das heißt schauen wir uns nun anhand unseres Beispiels an.
+Wir starten also beim Startpunkt.
+Deshalb wird die entsprechende Kachel geladen und liegt jetzt im Speicher, was wir durch die blaue Umrandung kennzeichnen.
+Die grüne Färbung steht dafür, dass die Kachel nun einmal geladen wurde.
+Nun schauen wir uns den kürzesten Pfad von der 1 aus an.
+Dieser führt zur 2, weshalb nun die Kachel der 2 laden müssen, was wir wieder entsprechend kennzeichnen.
+Nun könnte der nächste Pfad entweder zur 3 oder zur 4 führen.
+Da gesamte Pfad von Punkt 1 zu 4 über die 2 jedoch länger ist als der Pfad von der 1 direkt zur 3 wird nun also also nächstes dieser Pfad betrachtet, dassen Kachel aktuell nicht geladen ist.
+Da diese Kachel nun schon ein zweites Mal geladen wurde, hinterlegen wir sie rot.
+Der nächste länger Pfad führt jetzt auf jeden fall zu Punkt 4.
+Die Frage ist nur von welchem Punkt aus.
+Da der Pfad über die 2 jedoch kürzer ist, wird dieser gewählt und auch die Kachel der 4 wird ein zweites mal geladen. 
+Schließlich gelangen wir also über die 4 zu unserem Zielpunkt 5.
+Wie sie sehen mussten wir bei dieser Strecke 2 von 3 Kacheln doppelt Laden.
+Nun schauen wir uns also unsere Methode an.
+Die Idee ist ganz einfach die, Wege für die keine Kachel geladen werden muss bevorzugt werden.
+Was das in der Praxis heißt zeigen wir jetzt.
+Es wird also wieder bei Punkt 1 gestartet und die Kachel entsprechend geladen.
+Statt jetzt aber mit Punkt zwei fortzufahren, wird sich zuerst Punkt drei angeschaut, da er sich in einer aktuell geladenen Kachel befindet.
+Im nächsten Schritt schauen wir uns schließlich Punkt 2 an, dessen Kachel ein erstes mal geladen wird.
+Als nächstes Punkt 4, was wieder keinen Mehraufwand durch das Laden von Kacheln verursacht und schließlich finden wir Punkt 5 und damit den kürzesten Weg.
+
+In diesem Fall haben wir jetzt “nur” zwei mal Laden eingespart.
+Auf komplexeren Karten und weiteren Routen sucht das Verfahren jedoch nicht nur auf einem kleinen Strang nach dem kürzesten Weg, sondern erforscht die Karte in alle Richtungen.
+Daher erspart und allein diese Methode im Schnitt 90% der Ladevorgänge von Kacheln.
+
+Um ihnen einen Überblick darüber zu geben, was wir noch gemacht haben, will ich ihnen an dieser Stelle eine Grafik aus einer wissenschaftlichen Arbeit zeigen, welche wir im letzten halben Jahr verfasst haben.
+Hier sehen wir, wie wir das Ausgangsverfahren links durch das entwickeln und kombinieren verschiedener Methoden so angepasst haben schließlich bei LATER auf der rechten Seite nur noch  1/20 der Ladevorgänge des Ausgangsverfahrens benötigt wurden.
+Während der Bachlorarbeiten wurde die Graphik noch in verschiedene Richtungen erweitert.
+
+Zum Abschluss möchte ich ihnen noch eine Gegenüberstellung von dem Ursprungsverfahren links und unserer Abwandlung recht auf einer Strecke von Hamburg zum Bodensee zeigen. 
+Die Färbung kennen sie schon aus dem Beispiel, dass ich ihnen gezeigt hab.
+Grüne Kachel: wenig geladen, Rote Kachel: viel geladen, blaue Kachel: aktuell im Speicher.
+
+Was auffällt ist, die blauen Kacheln recht sehr viel ruhiger sind als links, was sich dann auch in der Farbgebung wiederspiegelt
+Die röteste Kachel links wurde übrigens über 240 mal geladen.
+
+Damit bedanken wir uns dann auch für ihre Aufmerksamkeit. Wenn sie wissen wollen wie unsere anderen Methoden aussehen oder sie noch Fragen haben, dann besuchen sie uns doch nach den Präsentationen noch an unserem Stand.
