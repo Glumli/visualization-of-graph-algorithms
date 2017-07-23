@@ -3,7 +3,7 @@
     paper = a4,
     pagesize,
     12 pt,
-    oneside,                       % Chose ›oneside‹ for digital version, ›twoside‹ for printed version.
+    twoside,                       % Chose ›oneside‹ for digital version, ›twoside‹ for printed version.
     open = right,
     DIV = calc,
     BCOR = 0 mm,                   % Binding correction. Only necessary for printed version. Depends on actual binding.
@@ -30,11 +30,15 @@
 
 
 \frontmatter
-% Title Page
+
+\KOMAoptions{twoside=false}
 \input{Files/Title_Page.tex}
+\newpage\null\thispagestyle{empty}\newpage
 
 % Abstract
 \input{Files/Abstract.tex}
+\newpage\null\thispagestyle{empty}\newpage
+\KOMAoptions{twoside=true}
 
 % Table of Contents
 \input{Files/Table_of_Contents.tex}
@@ -51,27 +55,27 @@ Therefore, developing more efficient graph algorithms plays a major role in algo
 During the process of development full awareness of all processes and changes in algorithm behaviour is necessary.
 %As developing an algorithm is an iterative process it is fundamental to communicate about the different approaches and therefore create an understanding of them in the whole team.
 As developing an algorithm is an iterative process it is of upmost importance that the research participants communicate constantly with respect to different approaches, and therefore maintain a high level of mutual awareness.
-Furthermore, the developed algorithms can become quite complex and therefore the idea of how the algorithms should behave and the way they actually behave on real graph data, can diverge quite a lot.
+Furthermore, the developed algorithms can become quite complex and therefore the idea of how the algorithms should behave and the way they actually behave on real graph data can diverge quite a lot.
 
 % Projekt
 In the last eleven month, we developed a shortest path algorithm on geographical tiled map data.
-The tiles impact the algorithm insofar that the loading of a tile has high costs and should therefore be avoided as much as possible.
+The tiles impact the algorithm insofar that the loading of a tile has high costs and should, therefore, be avoided as much as possible.
 A tile needs to be loaded whenever one of its nodes is processed.
 As the algorithm was developed for portable devices, it has access to the cache: a fast storage medium.
 The cache can store a limited amount of tiles.
 Therefore, a tile only needs to be loaded whenever it is not in the cache.
-Due to the limited size of the cache, loading a tile into the cache, requires removing another one, as soon as the cache is full.
+Due to the limited size of the cache, loading a tile into the cache requires removing another one, as soon as the cache is full.
 
 As the human eyes are a fast way to access information, we decided to visualize the progress of the algorithm to achieve the necessary understanding.
 Though there are many tools for visualizing graphs such as for example Walrus \cite{walrus}, and even multiple algorithm visualization tools such as VisuAlgo\cite{visualgo}, there is currently no visualization tool that fits our needs.
 %This might result from the high amount of individual characteristics of our class of algorithms and its underlying graph.
 One of the reasons might be due to the large amount of individual characteristics of our class of algorithms and its underlying graph.
-Therefore, developing an new, self-created visualization that fits one's individual needs is necessary.
+Therefore, developing a new, self-created visualization that fits one's individual needs is necessary.
 
 \paragraph{Outline.} We will be explaining different approaches we developed for visualizing the specific class of algorithms.
 In \Cref{questions}, we will touch on different methods we created that may be used for displaying the algorithms.
 In the following \Cref{main} those methods are then introduced, explained and discussed in more detail.
-A discussion and outlook in \Cref{conclusion} concludes the thesis.
+A discussion in \Cref{conclusion} concludes the thesis.
 
 
 \chapter{Preliminaries} \label{questions}
@@ -84,7 +88,7 @@ The implementation of those characteristics is then discussed in \Cref{main}.
 
 \section{Problem Specification} \label{specification}
 
-This section presents the scope the visualization is runnging in.
+This section presents the scope the visualization is running in.
 Therefore, in \Cref{framework} we introduce the algorithms that are going to be displayed and in \Cref{spec_graph} the underlying graph is described.
 
 \subsection{The Class of Algorithms} \label{framework}
@@ -101,7 +105,7 @@ This results in a uniformly spreading of the search space around the start node.
 
 The A*-algorithm generally adopts this strategy.
 Its goal is to search target oriented and therefore reduce the search space.
-Therefore, the the A*-algorithm-queue is ordered not only by the summed distance of the edges to the start node but also by the linear distance to the target node.
+Therefore, the A*-algorithm-queue is ordered not only by the summed distance of the edges to the start node but also by the linear distance to the target node.
 Thereby, nodes presumably closer to the target get expanded first.
 This leads to a target directed spreading.
 
@@ -139,7 +143,7 @@ Based on this, we describe one method of displaying the cache and introduce mult
 \subsection{Basics}
 
 In \Cref{basic}, we describe how we to combine the elements from \Cref{graph} to build a basic visualization.
-In this case, a main challenge is to transform a static graph into a dynamic visualization that outlines the changing states of the graph during the ongoing algorith.
+In this case, a main challenge is to transform a static graph into a dynamic visualization that outlines the changing states of the graph during the ongoing algorithm.
 
 
 \subsection{Visualizing the Cache} \label{pre_cache}
@@ -150,7 +154,7 @@ Then, a method is presented that enables us to see how well an algorithm perform
 
 \section{Comparing Algorithms}
 
-To deteact any progress in development and examine an iteration of the algorithm, it is necessary to compare different algorithms based on the visualization.
+To detect any progress in development and examine an iteration of the algorithm, it is necessary to compare different algorithms based on the visualization.
 Therefore a trivial strategy is to place two visualizations parallel to each other.
 This approach did not produce the desired effect and therefore, we introduce some other approaches for comparing algorithms.
 
@@ -163,8 +167,8 @@ Based on the developed visualization, we will introduce additional features we a
 \section{Run-Time Visualization vs. Post-Execution Visualization}
 
 There are two possibilities of visualizing an algorithm.
-One is to visualize the algorithm and what it does on runtime.
-A second approch is to run the algorithm first and create log files from which, once the algorithm has finished, the visualization is created.
+One is to visualize the algorithm and what it does at runtime.
+A second approach is to run the algorithm first and create log files from which, once the algorithm has finished, the visualization is created.
 
 Run-time visualizations have an advantage; the algorithm does not have to be completed before things are visualized.
 Therefore, this kind of visualization is especially useful, whenever algorithms need a long time of completion.
@@ -182,7 +186,7 @@ Most methods introduced in \Cref{main} are not limited to a specific kind of vis
 
 \section{The HSV Color Model}
 
-The HSV Color Model describes a color by its hue, its saturation and its value.
+The HSV Color Model describes a color by its hue, its saturation, and its value.
 \begin{itemize}
   \item Hue: The hue represents the position of the pure color on the color wheel and therefore has a value ranging from $0^\circ$ to $360^\circ$.
   \item Saturation: The saturation describes the degree of colorfulness. In this respect, it is indicated with a value ranging from 0 to 1, whereby 0 results in absolute white and 1 in the pure color.
@@ -212,7 +216,7 @@ For our visualization, we considered two known projections.
 
 Firstly, the Equirectangular projection which may be considered due to its simplicity.
 The other alternative, using the Mercator projection, that is one of the most common and is displayed on most global maps as well as used by popular map providers such as Google Maps \cite{google_maps}.
-It was originally developed for nautical cartography in the 16th century \cite{mercator}.
+It was originally developed for nautical cartography in the 16th-century \cite{mercator}.
 
 The Equirectangular projection is also known as an unprojected map \cite{equirectangular}.
 This is because it only maps the Earth on a plane by using the longitude as the horizontal coordinate and the latitude as the vertical coordinate.
@@ -244,18 +248,18 @@ However, as those visualizations are mostly used for smaller graphs (usually to 
 As we know, at the end of every edge one node is to be found; we can clearly identify every node as long as the node is connected to any other node.
 Therefore, we decided not to use any additional representation of nodes for the visualization, as they do not add any value and make the visualization more crowded.
 We notice that we do not display nodes that are not connected to any other node.
-As the only way for those nodes to play a role during the algorithm is beeing the start or the target node, the absence or presence of those nodes is not significant.
+As the only way for those nodes to play a role during the algorithm is being the start or the target node, the absence or presence of those nodes is not significant.
 
 \paragraph{Edges.}
 
-A common approach for dipplaying edges is to represent them by straight lines.
+A common approach for displaying edges is to represent them by straight lines.
 The length of the edges is generally reflected by the length of the lines in most cases.
-However, we need to respect that it is possible, that the linear distance of two nodes, which is displayed by the linear representation, can diverge quite a lot from the real length of the edge in some cases.
+However, we need to respect that it is possible, that the linear distance between two nodes, which is displayed by the linear representation, can diverge quite a lot from the real length of the edge in some cases.
 In addition, as we use the Equirectangular projection, the lines are distorted horizontally depending on their proximity to the poles.
 
 In order to also represent the speed of an edge, we can color the edge according to its speed.
 By using the HSV color space we achieved a seamless color transition from red for 0 km/h, yellow for a speed of approximately 60 km/h and green for the fastest edges with a speed of 120 km/h and more.
-Using HSV we are be able to outline edges with a speed of 240 km/h without any issues in comprehensibility.
+Using HSV we are able to outline edges with a speed of 240 km/h without any issues in comprehensibility.
 
 
 \paragraph{Tiles.}
@@ -322,7 +326,7 @@ By removing the edges we also experienced a tremendous performance boost.
 
 \paragraph{Outlining the Current Step.}
 
-In the tile-based visualization, from \Cref{fig:only_rectangles}, it is difficult to detact when a tile is added to the graph.
+In the tile-based visualization, from \Cref{fig:only_rectangles}, it is difficult to detect when a tile is added to the graph.
 Furthermore, it is impossible to notice which tile the algorithm is currently processing.
 Therefore, a trivial approach is to color the tile in which the algorithm is currently processing edges.
 
@@ -343,7 +347,7 @@ Thus we had to search and discover a more compatible method of showing what is g
 
 We came up with a method we called tile-aging.
 The method evolved from the previously mentioned method; it serves as a continuation, but instead of phasing-out the tile color rapidly, it phases-out tile color over time.
-Therefore, the tiles becomes slightly brighter at every step of the algorithm.
+Therefore, the tiles become slightly brighter at every step of the algorithm.
 
 \begin{figure}
     \includegraphics[width=\textwidth]{Images/vis-aged-coloring.png}
@@ -355,7 +359,7 @@ In \Cref{fig:color_aged_tile} we see that this approach leads to a much better u
 Therefore, it improves comprehensibility on how the algorithm performs on the underlying graph.
 
 In the example displayed in \Cref{fig:color_aged_tile}, we notice that most of the recently loaded tiles are located on the outside of the explored graph, but there are three larger areas in the inner graph as well.
-After an examination of those areas we found a simple explanation.
+After an examination of those areas, we found a simple explanation.
 The larger recently processed areas are located in-between highways.
 Therefore the algorithm observes the highways first and then slowly spreads outwards from the highway exits.
 
@@ -365,7 +369,7 @@ In one way or another, we have to decide where we want to place the elements in 
 We seek to show the same element at exactly the same spot in the entire visualization.
 Therefore, the visualization needs to consider which region of the graph it seeks to show before it displays the first element.
 As the displayed graph grows as the algorithm progresses, there is the risk of growing out of the screen when we estimate the final graph too small.
-On the other side, a graph that is estimated to big would result in much unused space on out screen.
+On the other side, a graph that is estimated to big would result in much unused space on the screen.
 
 % As the displayed graph expands and the algorithm progresses, graph size problems might occur.
 % The graph might be smaller or larger than the desired screen area.
@@ -373,7 +377,7 @@ On the other side, a graph that is estimated to big would result in much unused 
 %
 % This risk
 %  is the risk of growing out of the screen when we estimating the final graph as too small.
-% On the other side, a graph that is estimated to big, which would result in much unused space on out screen.
+% On the other side, a graph that is estimated to big, which would result in much unused space on the screen.
 
 We considered multiple approaches to solve this issue.
 Firstly, we developed an estimation method that estimates the extent of the explored graph of the fully evolved algorithm.
@@ -416,8 +420,8 @@ As can be seen in \Cref{fig:spreaded_axis} this reduces the unused space to a mi
 However, we lose a lot of comprehensibility, because the length of a line on the screen corresponds even less to the real edge length.
 
 As a result, we decided to use the preprocessing method with uniform axes for our visualization.
-On the one hand, the additional performance costs in preprocessing are worth the reduced amount of unused space.
-On the other hand, the possible unused space on one axis is worth the increased comprehensibility.
+On the one hand, the reduced amount of unused space is worth the additional performance costs in preprocessing.
+On the other hand, the increased comprehensibility is worth the possible unused space on one axis.
 
 
 \subsection{Visualizing the Cache} \label{cache}
@@ -460,7 +464,7 @@ In \Cref{fig:reload_coloring_hsv} we notice the differences between two similar 
 As a side effect, the graph contrasts to the background much better now.
 
 \section{Comparing Algorithms} \label{compare}
-A first approach for comparing algortihms is to simply start two visualizations and display in parallel.
+A first approach for comparing algorithms is to simply start two visualizations and display in parallel.
 
 \begin{figure}
     \includegraphics[width=\textwidth]{Images/vis-compare-two.png}
@@ -472,7 +476,7 @@ In \Cref{fig:two_visualization} we can only notice smaller differences in the se
 We experienced that this kind of comparison is not useful for really examining differences between algorithms, but for showing them to others.
 For really comparing algorithms, we therefore, needed to develop a new variation of the visualization.
 Therefore, we removed the space between both visualizations.
-The idea is, that smaller differences are more visible, if tiles with the same location are displayed directly next to each other.
+The idea is, that smaller differences are more visible if tiles with the same location are displayed directly next to each other.
 Therefore, we split each tile in two and color the left half according to the reloads of one algorithm and the right half according to the reloads of the other algorithm.
 
 \begin{figure}
@@ -492,15 +496,15 @@ The more intense the color, the larger the difference in the amount of tile load
 
 \begin{figure}
     \includegraphics[width=\textwidth]{Images/vis-compare-colored.png}
-\caption[]{Showing only the difference of tile loads. Red colors have been loaded more often by the first algorithm, blue colored tiles by the second algorithm. Those tiles colored white, have been loaded equally by both algorithms.}
+\caption[]{Showing only the difference of tile loads. Red colored tiles have been loaded more often by the first algorithm, blue colored tiles by the second algorithm. Those tiles colored white, have been loaded equally by both algorithms.}
 \label{fig:difference}
 \end{figure}
 
-In  \Cref{fig:difference} we can see the comparisson between one algorithm (red) and its variation (blue).
-Because of the red and blue bordes of the displayed graph we notice that the search space has changed slightly.
-In genereal the visualization has more red than blue tiles and therefore the variation of the algorithm seems to be an improvement in this case.
+In  \Cref{fig:difference} we can see the comparison between one algorithm (red) and its variation (blue).
+Because of the red and blue borders of the displayed graph, we notice that the search space has changed slightly.
+In general, the visualization has more red than blue tiles and therefore the variation of the algorithm seems to be an improvement in this case.
 Apart from the shifted search space, there is another area that has a noticeable accumulation of blue tiles around the target in the lower half of the visualization.
-After a closer look at this we discovered that when the affected area is explored the cache is mostly used for tiles in the upper part of graph.
+After a closer look at this, we discovered that when the affected area is explored the cache is mostly used for tiles in the upper part of the graph.
 This leads to further reloading in the lower part.
 Hence, we were able to fix this error pattern and made the cache available when it was needed in the lower part.
 
@@ -510,7 +514,7 @@ Hence, we were able to fix this error pattern and made the cache available when 
 In this section, we will take a look at the visualization we have just built and present some additional features.
 For longer routes, as can be seen in \Cref{fig:reload_coloring_hsv}, we had to realize, that even the visualization, that displays only the tiles, has a problem in that single elements, in this case the tiles, become quite small.
 Therefore, we added a zoom feature to the visualization.
-After having included this feature it was necessary to enable panning as well, otherwise we could only examine the middle of the graph.
+After having included this feature it was necessary to enable panning as well, otherwise, we could only examine the middle of the graph.
 
 \begin{figure}
     \includegraphics[width=0.5\textwidth]{Images/vis-zoom-small.png}
@@ -521,9 +525,9 @@ After having included this feature it was necessary to enable panning as well, o
 
 We are now able to have a more detailed view on smaller parts of the graph, as can be seen in \Cref{fig:zoom}.
 
-In \Cref{algorithm}, we described the fact that the edges are not recognizable individually on larger routes and we therefore, exluded them from our visualization.
+In \Cref{algorithm}, we described the fact that the edges are not recognizable individually on larger routes and we, therefore, excluded them from our visualization.
 With the new possibility of zooming, showing the edges might become a useful feature for our visualization again.
-This could for example be useful, when we want to understand, why specific tiles are loaded more often than others.
+This could, for example, be useful, when we want to understand, why specific tiles are loaded more often than others.
 As showing the edges can also make the visualization more confusing and thus distract from the important information, we will make showing the edges optional and make it possible to display an reveal them at any point during the visualization.
 
 \begin{figure}
@@ -544,11 +548,11 @@ Therefore we decided to use the colored edges described in \Cref{graph} and ther
 \label{fig:colored edges}
 \end{figure}
 
-In \Cref{fig:colored edges} we can now notice that in those tiles that are loaded more often, there are not only many edges, but those with a very low speeds.
-Genreally, the surrounding and less loaded tiles allow for higher speeds.
+In \Cref{fig:colored edges} we can now notice that in those tiles that are loaded more often, there are not only many edges, but those with very low speeds.
+Generally, the surrounding and less loaded tiles allow for higher speeds.
 
-Another feature we needed, after the algorithms improved, was to be able to adjust the level of coloring reloads.
-Otherwise it is not possible locate those tiles that have been loaded more often, when considering, that the maximal amount of tile loads is five.
+Another feature we needed, after the algorithms improved, was to be able to adjust the level of reload coloring.
+Otherwise, it is not possible to locate those tiles that have been loaded more often, when considering, that the maximal amount of tile loads is five.
 We decided to make this level adjustable while the visualization is running.
 
 \begin{figure}
@@ -558,7 +562,7 @@ We decided to make this level adjustable while the visualization is running.
 \label{fig:factor}
 \end{figure}
 
-By increasing the coloring of reloads, as can be seen in \Cref{fig:factor}, we are now able to detact weaknesses even on highly developed algorithms.
+By increasing the coloring of reloads, as can be seen in \Cref{fig:factor}, we are now able to detect weaknesses even on highly developed algorithms.
 
 \chapter{Conclusion} \label{conclusion}
 
@@ -571,30 +575,27 @@ Especially on larger routes, this limit raises problems and a certain level of a
 Elements need to be assessed with regard to their importance to the class of algorithms and the way the algorithms should be improved.
 Another aspect that needs to be considered is the space the elements would require and therefore the number of elements that would have to be displayed.
 
-In our case we decided not to show every single edge as the relation between importance and their amount is disproportionate.
-On the contrary the tiles play a major role for the class of algorithms and their total amount is quite low.
+In our case, we decided not to show every single edge as the relation between importance and their amount is disproportionate.
+On the contrary, the tiles play a major role for the class of algorithms and their total amount is quite low.
 
 The decision as to which elements to show strongly depends on the role of the elements for the class of algorithms.
 In our case this decision was quite straightforward, as the most important elements, namely the tiles, were few enough in number, to display.
-For algorithms on which stongly represented elements have a strong impact, it might me necessary to introduce an abstraction of those elements.
+For algorithms on which strongly represented elements have a strong impact, it might be necessary to introduce an abstraction of those elements.
 
-Having decided which elements to show, it is important to find a way to make the process of the algorithm visible, which we archieved by adding one element after another and coloring the elements accoring to their last usage.
-Displaying the result of the algorithm also helped achieving an understanding of the progress of the algorithm.
+Having decided which elements to show, it is important to find a way to make the process of the algorithm visible, which we achieved by adding one element after another and coloring the elements according to their last usage.
+Displaying the result of the algorithm also helped to achieve an understanding of the progress of the algorithm.
 
 Finally, we made sure that all information the researchers need is easily accessible.
 To this end, we included the cache and added the coloring according to the reloads.
-In addition we integrated zooming and panning, showing edges on demand and altering color intensity.
+In addition, we integrated zooming and panning, showing edges on demand and altering color intensity.
 We even created a new visualization for the sole purpose of comparing two algorithms.
 
 Combining the introduced methods we have been able to create a sensemaking visualization that highly improved the process of developing a shortest path algorithm on tiled map data.
 
-\todo{schlusssatz}
 
-
-
-% In our case the edges are insofar relevant, as they are a fundermental part of the graph, but for the development of the algorithm they do not play a major role.
+% In our case the edges are insofar relevant, as they are a fundamental part of the graph, but for the development of the algorithm, they do not play a major role.
 % On the other hand the amount of edges is huge.
-% Those factors make those methods that use the edges for showing the process of the algorithm less sensemaking because of their lack of clairity.
+% Those factors make those methods that use the edges for showing the process of the algorithm less sensemaking because of their lack of clarity.
 % Nevertheless in combination with the zoom feature displaying edges becomes reasonable, as zooming in reduces the amount of displayed elements on the screen and therefore enables a more detailed view.
 %
 % On the contrary the total amount of tiles is in a reasonable relation to their importance for the algorithm.
