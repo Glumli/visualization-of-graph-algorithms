@@ -18,8 +18,8 @@
 \myDateOfBirth{March~12, 1995}  % Change!
 \myPlaceOfBirth{Berlin, Germany}  % Change!
 \mySubject{{Graph Algorithms}{Visualization}}  % Change!
-\advisorOne{Martin~S. Krejca}
-\advisorTwo{Thomas Bl\"asius}
+\advisorTwo{Martin~S. Krejca}
+\advisorOne{Dr. Thomas Bl\"asius}
 \myGermanTitle{Visualisierung von K\"urzeste-Wege-Algorithmen auf segmentierten Karten}
 
 \input{Files/Preamble.tex}
@@ -54,10 +54,10 @@ As developing an algorithm is an iterative process it is of upmost importance th
 Furthermore, the developed algorithms can become quite complex and therefore the idea of how the algorithms should behave and the way they actually behave on real graph data, can diverge quite a lot.
 
 % Projekt
-In the twelve month, we developed a shortest-path algorithm on geographical tiled map data.
+In the last eleven month, we developed a shortest path algorithm on geographical tiled map data.
 The tiles impact the algorithm insofar that the loading of a tile has high costs and should therefore be avoided as much as possible.
 A tile needs to be loaded whenever one of its nodes is processed.
-As the algorithm was developed for portable devices, it has access to the so-called cache: a fast storage medium.
+As the algorithm was developed for portable devices, it has access to the cache: a fast storage medium.
 The cache can store a limited amount of tiles.
 Therefore, a tile only needs to be loaded whenever it is not in the cache.
 Due to the limited size of the cache, loading a tile into the cache, requires removing another one, as soon as the cache is full.
@@ -65,7 +65,7 @@ Due to the limited size of the cache, loading a tile into the cache, requires re
 As the human eyes are a fast way to access information, we decided to visualize the progress of the algorithm to achieve the necessary understanding.
 Though there are many tools for visualizing graphs such as for example Walrus \cite{walrus}, and even multiple algorithm visualization tools such as VisuAlgo\cite{visualgo}, there is currently no visualization tool that fits our needs.
 %This might result from the high amount of individual characteristics of our class of algorithms and its underlying graph.
-One if the reasons might be due to the large amount of individual characteristics of our class of algorithms and its underlying graph.
+One of the reasons might be due to the large amount of individual characteristics of our class of algorithms and its underlying graph.
 Therefore, developing an new, self-created visualization that fits one's individual needs is necessary.
 
 \paragraph{Outline.} We will be explaining different approaches we developed for visualizing the specific class of algorithms.
@@ -76,16 +76,16 @@ A discussion and outlook in \Cref{conclusion} concludes the thesis.
 
 \chapter{Preliminaries} \label{questions}
 
-In this chapter, we will first introduce the class of algorithms that the visualization will display.
-Then, we will discuss the graph data the algorithms are running on.
+In this chapter, we first introduce the class of algorithms that the visualization will display.
+Then, we discuss the graph data the algorithms are running on.
 Following that, the characteristics of the visualization are presented.
 The implementation of those characteristics is then discussed in \Cref{main}.
 
 
 \section{Problem Specification} \label{specification}
 
-This section will present the scope the visualization is runnging in.
-Therefore, in \Cref{framework} we are going to introduce the algorithms that are going to be displayed and in \Cref{spec_graph} the underlying graph is described.
+This section presents the scope the visualization is runnging in.
+Therefore, in \Cref{framework} we introduce the algorithms that are going to be displayed and in \Cref{spec_graph} the underlying graph is described.
 
 \subsection{The Class of Algorithms} \label{framework}
 
@@ -95,7 +95,7 @@ A shortest path algorithm, in general, has the goal to find the path with the lo
 The class of algorithms is based on Dijkstra's algorithm\cite{DIJKSTRA1959} and its improvement, the A*-algorithm\cite{4082128}.
 Dijkstra's algorithm commences at the start node from where it adds the neighbours of the node to a priority queue that sorts the elements according to their distance to the start node.
 %proximity
-In each iteration, the node with the highest priority (smallest distance) is removed from the queue and its neighbors are added to the queue, when not already inserted.
+In each iteration, the node with the highest priority (smallest distance) is removed from the queue and its neighbors are added to the queue, when not already contained.
 Whenever the node that is going to be removed from the queue is the target node, the shortest path is found.
 This results in a uniformly spreading of the search space around the start node.
 
@@ -109,7 +109,7 @@ At this stage, it is important to note that both algorithms create a coherent ar
 
 \subsection{The graph} \label{spec_graph}
 
-The underlying graph of the algorithms is a real-world road network.
+The underlying graph of the class of algorithms is a real world road network.
 Every node has given coordinates that refer to a certain position on Earth, the edges are directed and the weight of an edge can be calculated using its speed and its length.
 What makes the graph special, is the fact that it is based on the Navigation Data Standard (NDS).
 Based on the NDS the graph is split into tiles according to a geographical grid.
@@ -170,7 +170,7 @@ Run-time visualizations have an advantage; the algorithm does not have to be com
 Therefore, this kind of visualization is especially useful, whenever algorithms need a long time of completion.
 
 Post-execution visualizations, on the one hand, need to wait till the algorithm is finished and the algorithm has to write the information the visualization needs in log files which requires extra storage.
-On the other hand they can display information the algorithm has yet to process, but increase the degree comprehensibility. \todo{first half}
+On the other hand, they can display information the algorithm has yet to process, but increase the degree comprehensibility.
 
 Most methods introduced in \Cref{main} are not limited to a specific kind of visualization, but some are only possible in post-execution visualizations.
 
@@ -211,12 +211,10 @@ Mapping coordinates of the spherical Earth to a plane is an extensively discusse
 For our visualization, we considered two known projections.
 
 Firstly, the Equirectangular projection which may be considered due to its simplicity.
-The other alternative, using the Mercator projection, that is one of the most common and is displayed on most global maps as well as used by popular map providers such as Google maps \cite{google_maps}.
-\todo{Google Maps vs Google maps}
+The other alternative, using the Mercator projection, that is one of the most common and is displayed on most global maps as well as used by popular map providers such as Google Maps \cite{google_maps}.
 It was originally developed for nautical cartography in the 16th century \cite{mercator}.
 
 The Equirectangular projection is also known as an unprojected map \cite{equirectangular}.
-\todo{unprojected map}
 This is because it only maps the Earth on a plane by using the longitude as the horizontal coordinate and the latitude as the vertical coordinate.
 The geographical distance between the longitudes shrinks as the latitudes get closer to the poles.
 Therefore, the projection becomes more distorted in those areas or planes.
@@ -284,10 +282,11 @@ For now, we assume displaying the correct region of the graph is not a problem.
 \begin{figure}
     \includegraphics[width=.5\textwidth]{Images/vis-step-one.png}
     \includegraphics[width=.5\textwidth]{Images/vis-step-two.png}
-\caption{Two consecutive steps in the visualization. Every black line represents an edge.}
+    \includegraphics[width=.5\textwidth]{Images/vis-step-three.png}
+    \includegraphics[width=.5\textwidth]{Images/vis-step-four.png}
+\caption{Four consecutive steps in the visualization. Every black line represents an edge.}
 \label{fig:two-steps}
 \end{figure}
-\todo{mehr graph}
 
 In \Cref{fig:two-steps} we can see that we achieved a good basic understanding of how the algorithm evolves.
 The tiles can be visualized in a similar way.
@@ -344,7 +343,7 @@ Thus we had to search and discover a more compatible method of showing what is g
 
 We came up with a method we called tile-aging.
 The method evolved from the previously mentioned method; it serves as a continuation, but instead of phasing-out the tile color rapidly, it phases-out tile color over time.
-Therefore, the tile becomes slightly brighter at every step of the algorithm.
+Therefore, the tiles becomes slightly brighter at every step of the algorithm.
 
 \begin{figure}
     \includegraphics[width=\textwidth]{Images/vis-aged-coloring.png}
@@ -352,8 +351,8 @@ Therefore, the tile becomes slightly brighter at every step of the algorithm.
 \label{fig:color_aged_tile}
 \end{figure}
 
-In \Cref{fig:color_aged_tile} we see that this approach leads to a much better understanding of the sequence of tile-loads.
-Therefore, it improves comprehensibility us to how the algorithm performs on the underlying graph.
+In \Cref{fig:color_aged_tile} we see that this approach leads to a much better understanding of the sequence of tile loads.
+Therefore, it improves comprehensibility on how the algorithm performs on the underlying graph.
 
 In the example displayed in \Cref{fig:color_aged_tile}, we notice that most of the recently loaded tiles are located on the outside of the explored graph, but there are three larger areas in the inner graph as well.
 After an examination of those areas we found a simple explanation.
@@ -365,8 +364,8 @@ In this paragraph, we are going to explain something we previously took for gran
 In one way or another, we have to decide where we want to place the elements in the visualization.
 We seek to show the same element at exactly the same spot in the entire visualization.
 Therefore, the visualization needs to consider which region of the graph it seeks to show before it displays the first element.
-As the displayed graph grows as the algorithm progresses there is the risk of growing out of the screen when we estimate the final graph too small.
-On the other side, a graph that is estimated to big, which would result in much unused space on out screen.
+As the displayed graph grows as the algorithm progresses, there is the risk of growing out of the screen when we estimate the final graph too small.
+On the other side, a graph that is estimated to big would result in much unused space on out screen.
 
 % As the displayed graph expands and the algorithm progresses, graph size problems might occur.
 % The graph might be smaller or larger than the desired screen area.
@@ -443,7 +442,7 @@ For showing how well an algorithm performs, we color every tile, whenever it is 
 \label{fig:reload_coloring_white}
 \end{figure}
 
-By coloring the reloads this way, we can now notice how well our algorithm performs and in which regions more reloads occur.
+By coloring the reloads this way, we can now notice how well our algorithm performs and in which regions more reloads occur, as we see in \Cref{fig:reload_coloring_white}.
 With this color scheme, bigger differences in tile loading can be distinguished easily.
 Nevertheless, smaller differences are difficult to recognize.
 Therefore, we tried another color scale.
@@ -500,7 +499,7 @@ The more intense the color, the larger the difference in the amount of tile load
 In  \Cref{fig:difference} we can see the comparisson between one algorithm (red) and its variation (blue).
 Because of the red and blue bordes of the displayed graph we notice that the search space has changed slightly.
 In genereal the visualization has more red than blue tiles and therefore the variation of the algorithm seems to be an improvement in this case.
-Apart from the shifted search space there is another area that has a noticeable accumulation of blue tiles around the target in the lower half of the visualization.
+Apart from the shifted search space, there is another area that has a noticeable accumulation of blue tiles around the target in the lower half of the visualization.
 After a closer look at this we discovered that when the affected area is explored the cache is mostly used for tiles in the upper part of graph.
 This leads to further reloading in the lower part.
 Hence, we were able to fix this error pattern and made the cache available when it was needed in the lower part.
@@ -524,7 +523,7 @@ We are now able to have a more detailed view on smaller parts of the graph, as c
 
 In \Cref{algorithm}, we described the fact that the edges are not recognizable individually on larger routes and we therefore, exluded them from our visualization.
 With the new possibility of zooming, showing the edges might become a useful feature for our visualization again.
-This could for example be useful, when we want to understand, why specific tiles are loaded much more often than others.
+This could for example be useful, when we want to understand, why specific tiles are loaded more often than others.
 As showing the edges can also make the visualization more confusing and thus distract from the important information, we will make showing the edges optional and make it possible to display an reveal them at any point during the visualization.
 
 \begin{figure}
@@ -586,6 +585,8 @@ Finally, we made sure that all information the researchers need is easily access
 To this end, we included the cache and added the coloring according to the reloads.
 In addition we integrated zooming and panning, showing edges on demand and altering color intensity.
 We even created a new visualization for the sole purpose of comparing two algorithms.
+
+Combining the introduced methods we have been able to create a sensemaking visualization that highly improved the process of developing a shortest path algorithm on tiled map data.
 
 \todo{schlusssatz}
 
